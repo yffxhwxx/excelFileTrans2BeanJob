@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bird.upload.dao.ExcelFileDao">
+  <resultMap id="BaseResultMap" type="com.bird.file.bean.ExcelFile">
+    <id column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_status" jdbcType="INTEGER" property="fileStatus" />
+    <result column="last_deal_time" jdbcType="TIMESTAMP" property="lastDealTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    file_id, file_path, user_id, file_name, file_status, last_deal_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from excel_file
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectFilesByStatus" parameterType="Integer" resultMap="BaseResultMap">
+    <include refid="Base_Column_List" />
+    from excel_file
+    where file_status = #{fileStatus}
+  </select>
+</mapper>

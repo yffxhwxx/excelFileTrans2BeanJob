@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+	   xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.dangdang.com/schema/ddframe/job
+       http://www.dangdang.com/schema/ddframe/job/job.xsd
+       http://www.dangdang.com/schema/ddframe/reg
+       http://www.dangdang.com/schema/ddframe/reg/reg.xsd http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+
+	<reg:zookeeper  id="regCenter" server-lists="127.0.0.1:2181"
+					namespace="elastic-job" base-sleep-time-milliseconds="1000" max-sleep-time-milliseconds="3000" max-retries="3"/>
+
+    <!-- 配置作业1-->
+    <job:dataflow id="test1" class="com.dangdang.test1.DemoFJob"
+				  registry-center-ref="regCenter"
+                  cron="0/10 * * * * ?"
+				  sharding-total-count="3"
+				  overwrite="true"
+				  sharding-item-parameters="0=上海,1=北京,2=榆林"/>
+
+</beans>
