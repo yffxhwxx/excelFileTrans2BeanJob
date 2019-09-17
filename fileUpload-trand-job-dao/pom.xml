@@ -10,19 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fileUpload-trand-job-dao</artifactId>
-
 <dependencies>
     <dependency>
         <groupId>com.bird</groupId>
-        <artifactId>excelFileTrans2BeanJob</artifactId>
+        <artifactId>fileUpload-trand-job-dto</artifactId>
         <version>1.0-SNAPSHOT</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.bird</groupId>
-        <artifactId>fileUpload-trans-job-bean</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <scope>compile</scope>
     </dependency>
 </dependencies>
+
 </project>

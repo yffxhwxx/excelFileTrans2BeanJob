@@ -8,10 +8,11 @@
     <artifactId>excelFileTrans2BeanJob</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>fileUpload-trans-job-bean</module>
-        <module>fileUpload-trand-job-dao</module>
         <module>fileUpload-trand-job-service</module>
         <module>fileUpload-trand-job-server</module>
+        <module>fileUpload-trand-job-dto</module>
+        <module>fileUpload-trand-job-dao</module>
+        <module>fileUpload-trand-job-service</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -52,6 +53,42 @@
             <groupId>com.dangdang</groupId>
             <artifactId>elastic-job-lite-spring</artifactId>
             <version>2.0.1</version>
+        </dependency>
+
+        <!--日志-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.4</version>
         </dependency>
     </dependencies>
 </project>

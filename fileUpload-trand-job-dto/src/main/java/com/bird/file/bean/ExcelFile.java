@@ -16,6 +16,8 @@ public class ExcelFile implements Serializable {
 
     private Date lastDealTime;
 
+    private Integer id;
+
     private static final long serialVersionUID = 1L;
 
     public String getFileId() {
@@ -64,6 +66,14 @@ public class ExcelFile implements Serializable {
 
     public void setLastDealTime(Date lastDealTime) {
         this.lastDealTime = lastDealTime;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

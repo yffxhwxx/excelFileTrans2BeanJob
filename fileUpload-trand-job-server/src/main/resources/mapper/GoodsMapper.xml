@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bird.file.dao.GoodsMapper">
+<mapper namespace="com.bird.file.dao.GoodsDao">
   <resultMap id="BaseResultMap" type="com.bird.file.bean.Goods">
     <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="goods_onsale" jdbcType="DECIMAL" property="goodsOnsale" />
@@ -77,10 +77,7 @@
     from goods
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from goods
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </delete>
+
 
   <insert id="insert" parameterType="com.bird.file.bean.Goods">
     insert into goods (goods_id, goods_onsale, goods_onstock, 
@@ -90,88 +87,20 @@
       #{goodsSale,jdbcType=DECIMAL}, #{goodsStock,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bird.file.bean.Goods">
-    insert into goods
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="goodsId != null">
-        goods_id,
-      </if>
-      <if test="goodsOnsale != null">
-        goods_onsale,
-      </if>
-      <if test="goodsOnstock != null">
-        goods_onstock,
-      </if>
-      <if test="goodsSale != null">
-        goods_sale,
-      </if>
-      <if test="goodsStock != null">
-        goods_stock,
-      </if>
-      <if test="fileId != null">
-        file_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="goodsId != null">
-        #{goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="goodsOnsale != null">
-        #{goodsOnsale,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsOnstock != null">
-        #{goodsOnstock,jdbcType=INTEGER},
-      </if>
-      <if test="goodsSale != null">
-        #{goodsSale,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsStock != null">
-        #{goodsStock,jdbcType=INTEGER},
-      </if>
-      <if test="fileId != null">
-        #{fileId,jdbcType=INTEGER},
-      </if>
-    </trim>
+
+  <insert id="batchInseret" >
+    insert into goods (goods_onsale, goods_onstock,
+    goods_sale, goods_stock, file_id
+    )
+    values
+    <foreach collection ="list" item="goods" separator =",">
+      (#{goods.goodsOnsale}, #{goods.goodsOnstock}, #{goods.goodsSale},#{goods.goodsStock},#{goods.fileId})
+    </foreach >
   </insert>
 
-  <update id="updateByExampleSelective" parameterType="map">
-    update goods
-    <set>
-      <if test="record.goodsId != null">
-        goods_id = #{record.goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="record.goodsOnsale != null">
-        goods_onsale = #{record.goodsOnsale,jdbcType=DECIMAL},
-      </if>
-      <if test="record.goodsOnstock != null">
-        goods_onstock = #{record.goodsOnstock,jdbcType=INTEGER},
-      </if>
-      <if test="record.goodsSale != null">
-        goods_sale = #{record.goodsSale,jdbcType=DECIMAL},
-      </if>
-      <if test="record.goodsStock != null">
-        goods_stock = #{record.goodsStock,jdbcType=INTEGER},
-      </if>
-      <if test="record.fileId != null">
-        file_id = #{record.fileId,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update goods
-    set goods_id = #{record.goodsId,jdbcType=INTEGER},
-      goods_onsale = #{record.goodsOnsale,jdbcType=DECIMAL},
-      goods_onstock = #{record.goodsOnstock,jdbcType=INTEGER},
-      goods_sale = #{record.goodsSale,jdbcType=DECIMAL},
-      goods_stock = #{record.goodsStock,jdbcType=INTEGER},
-      file_id = #{record.fileId,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.bird.file.bean.Goods">
     update goods
     <set>
@@ -193,6 +122,7 @@
     </set>
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.bird.file.bean.Goods">
     update goods
     set goods_onsale = #{goodsOnsale,jdbcType=DECIMAL},

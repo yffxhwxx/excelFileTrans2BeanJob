@@ -7,6 +7,7 @@
         <groupId>com.bird</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
     <properties>
         <spring.version>5.1.3.RELEASE</spring.version>
     </properties>
@@ -26,17 +27,29 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
+
+    <dependency>
+        <artifactId>fileUpload-trand-job-dao</artifactId>
+        <groupId>com.bird</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
     <dependency>
         <groupId>com.bird</groupId>
-        <artifactId>fileUpload-trand-job-dao</artifactId>
+        <artifactId>fileUpload-trand-job-service</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <scope>test</scope>
     </dependency>
 
     <dependency>
-        <groupId>com.bird</groupId>
-        <artifactId>fileUpload-trans-job-bean</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>3.16</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.16</version>
     </dependency>
 </dependencies>
+
 </project>

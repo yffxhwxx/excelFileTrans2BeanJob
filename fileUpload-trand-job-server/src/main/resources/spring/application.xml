@@ -24,17 +24,29 @@
         <property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
+
+    <!--在使用dao实现类时候用，mapper的id就可以和dao的方法名字可以不一样-->
     <bean id="sqlsession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="factory"/>
     </bean>
 
-    <!--dao扫描-->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.bird.upload.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="factory"/>
-    </bean>
-
+    <!--dao扫描   如果使用dao的实现类  就不需要如下配置-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="basePackage" value="com.bird.file.dao"/>-->
+        <!--<property name="sqlSessionFactoryBeanName" value="factory"/>-->
+    <!--</bean>-->
+    <context:annotation-config />
     <context:component-scan base-package="com.bird.file.*">
 
     </context:component-scan>
+    <import resource="classpath:spring/spring-job.xml" />
+
+    <bean id="logInitialization"
+          class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="ch.qos.logback.ext.spring.LogbackConfigurer"/>
+        <property name="targetMethod" value="initLogging"/>
+        <property name="arguments">
+            <value>classpath:logback.xml</value>
+        </property>
+    </bean>
 </beans>

@@ -1,4 +1,6 @@
-import com.bird.upload.dao.ExcelFileDao;
+
+
+import com.bird.file.dao.ExcelFileDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,11 +12,11 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = "classpath:spring/application.xml")
 public class testDao {
 @Resource
-ExcelFileDao dao;
+ExcelFileDao excelFileDao;
 
 @Test
 public void test(){
     Integer status =0;
-    System.out.println(dao.getClass().getName());
+    //System.out.println(excelFileDao.selectFilesByStatus(status).size());
 }
 }

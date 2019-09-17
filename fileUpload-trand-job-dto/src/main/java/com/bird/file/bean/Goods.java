@@ -14,7 +14,7 @@ public class Goods implements Serializable {
 
     private Integer goodsStock;
 
-    private Integer fileId;
+    private String fileId;
 
     private static final long serialVersionUID = 1L;
 
@@ -58,11 +58,11 @@ public class Goods implements Serializable {
         this.goodsStock = goodsStock;
     }
 
-    public Integer getFileId() {
+    public String getFileId() {
         return fileId;
     }
 
-    public void setFileId(Integer fileId) {
+    public void setFileId(String fileId) {
         this.fileId = fileId;
     }
 

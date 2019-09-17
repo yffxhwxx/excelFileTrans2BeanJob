@@ -9,19 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fileUpload-trand-job-service</artifactId>
+    <artifactId>fileUpload-trand-job-dto</artifactId>
 
-<dependencies>
 
-    <dependency>
-        <groupId>com.bird</groupId>
-        <artifactId>fileUpload-trand-job-dto</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency><dependency>
-    <groupId>com.bird</groupId>
-    <artifactId>fileUpload-trand-job-dao</artifactId>
-    <version>1.0-SNAPSHOT</version>
-</dependency>
-
-</dependencies>
 </project>

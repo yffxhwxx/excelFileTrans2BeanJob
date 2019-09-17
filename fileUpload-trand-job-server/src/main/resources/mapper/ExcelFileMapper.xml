@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bird.upload.dao.ExcelFileDao">
+<mapper namespace="com.bird.file.dao.ExcelFileDao">
   <resultMap id="BaseResultMap" type="com.bird.file.bean.ExcelFile">
     <id column="file_id" jdbcType="VARCHAR" property="fileId" />
     <result column="file_path" jdbcType="VARCHAR" property="filePath" />
@@ -12,7 +12,7 @@
 
 
   <sql id="Base_Column_List">
-    file_id, file_path, user_id, file_name, file_status, last_deal_time
+    file_id, file_path, user_id, file_name, file_status, last_deal_time,id
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -22,9 +22,16 @@
     where file_id = #{fileId,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectFilesByStatus" parameterType="Integer" resultMap="BaseResultMap">
+  <select id="getFilesByStatus" parameterType="Map" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from excel_file
-    where file_status = #{fileStatus}
+    where file_status =#{fileStatus}
+    and id %#{totulCount}=#{currentItem}
   </select>
+
+  <update id="updateStatusByFileId" >
+    update  excel_file set file_status=1
+    where id=#{id}
+  </update>
 </mapper>

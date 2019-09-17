@@ -15,14 +15,16 @@
 
 
 
-	<reg:zookeeper  id="regCenter" server-lists="127.0.0.1:2181"
-					namespace="elastic-job" base-sleep-time-milliseconds="1000" max-sleep-time-milliseconds="3000" max-retries="3"/>
+	<reg:zookeeper  id="regCenter" server-lists="111.231.99.213:2181"
+					namespace="elastic-job"
+					base-sleep-time-milliseconds="1000"
+					 max-sleep-time-milliseconds="3000" max-retries="3"/>
 
-    <!-- 配置作业1-->
-    <job:dataflow id="test1" class="com.dangdang.test1.DemoFJob"
+    <!--&lt;!&ndash; 配置作业1&ndash;&gt;-->
+    <job:dataflow id="ExcelFileTrans2BeanJob" class="com.bird.file.task.ExcelFileTrans2BeanJob"
 				  registry-center-ref="regCenter"
                   cron="0/10 * * * * ?"
-				  sharding-total-count="3"
+				  sharding-total-count="1"
 				  overwrite="true"
 				  sharding-item-parameters="0=上海,1=北京,2=榆林"/>
 
